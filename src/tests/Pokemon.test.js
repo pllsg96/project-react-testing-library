@@ -3,10 +3,19 @@
 import React from 'react';
 import { screen } from '@testing-library/react';
 import renderWithRouter from './renderWithRouter';
-import Pokemon from '../components/Pokemon';
-import pokemons from '../data';
+import App from '../App';
+// import pokemons from '../data';
 
 describe('Testando Pokemon.js', () => {
-  test('Teste se é renderizado as informações deum determinado pokemon', () => {
+  test('Teste se é renderizado as informações de um determinado pokemon', () => {
+    renderWithRouter(<App />);
+    const nomePokemon = screen.getByText('Pikachu');
+    expect(nomePokemon).toBeInTheDocument();
+
+    const tipoPokemon = screen.getAllByText('Electric');
+    expect(tipoPokemon.length).toBe(2);
+
+    const pesoPokemon = screen.getByText('Average weight: 6.0 kg');
+    expect(pesoPokemon).toBeInTheDocument();
   });
 });
