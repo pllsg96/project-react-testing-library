@@ -27,7 +27,7 @@ describe('Testando Pokedex.js', () => {
       expect(nomeTela).toBeInTheDocument();
       expect(imgNaTela).toBeInTheDocument();
       userEvent.click(nextButton);
-    });
+    });//
   });
 
   test('Se existem os botões filtro', () => {
@@ -47,5 +47,12 @@ describe('Testando Pokedex.js', () => {
 
     const proxPokemon = screen.getByTestId('next-pokemon');
     expect(proxPokemon.disabled).toBe(true);
+  });
+
+  test('Se o All existe', () => {
+    renderWithRouter(<App />);
+    const allButton = screen.getByRole('button', { name: 'All' });
+    userEvent.click(allButton);
+    expect(allButton).toBeInTheDocument();
   });
 });
